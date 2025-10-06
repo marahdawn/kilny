@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Kilny Ceramics{% endblock %}
+
+{% block body %}
+    <div class="homepage">
+        <!-- Logo in the center -->
+        <div class="logo">
+            {% include 'images/kilnylogo.svg' %}
+        </div>
+
+        <h1>Kilny Ceramics</h1>
+        <p>Handcrafted ceramics with love.</p>
+
+        <div class="buttons">
+            <a href="#shop" class="btn primary">Shop Now</a>
+            <a href="#about" class="btn secondary">Learn More</a>
+        </div>
+    </div>
+{% endblock %}

@@ -1,3 +1,73 @@
 body {
-    background-color: skyblue;
+    margin: 0;
+    font-family: 'Georgia', serif;
+    background-color: #f5f3ee; /* soft beige */
+    color: #333;
+}
+
+/* Homepage wrapper */
+.homepage {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    text-align: center;
+}
+
+/* Logo styling */
+.logo {
+    max-width: 200px;
+    margin-bottom: 20px;
+}
+
+.logo svg {
+    width: 100%;
+    height: auto;
+}
+
+/* Text */
+.homepage h1 {
+    font-size: 2.5rem;
+    margin: 10px 0;
+}
+
+.homepage p {
+    font-size: 1.2rem;
+    color: #555;
+}
+
+/* Buttons */
+.buttons {
+    margin-top: 20px;
+    display: flex;
+    gap: 15px;
+}
+
+.btn {
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    font-weight: bold;
+    transition: background 0.3s, color 0.3s;
+}
+
+.btn.primary {
+    background-color: #333;
+    color: #fff;
+}
+
+.btn.primary:hover {
+    background-color: #555;
+}
+
+.btn.secondary {
+    border: 2px solid #333;
+    color: #333;
+    background: transparent;
+}
+
+.btn.secondary:hover {
+    background-color: #333;
+    color: #fff;
 }

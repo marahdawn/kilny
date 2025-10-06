@@ -1,0 +1,46 @@
+version: '3.8'
+
+services:
+  php:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: kilny-php
+    environment:
+      - DATABASE_URL="mysql://kilnyuser:kilnypass@kilny-db:3306/kilny"
+    volumes:
+      - .:/var/www/html
+    ports:
+      - "8000:80"
+    depends_on:
+      - kilny-db
+
+  kilny-db:
+    image: mysql:8.0
+    container_name: kilny-db
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: kilny
+      MYSQL_USER: kilnyuser
+      MYSQL_PASSWORD: kilnypass
+    ports:
+      - "3307:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+
+  kilny-phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: kilny-phpmyadmin
+    restart: unless-stopped
+    environment:
+      PMA_HOST: kilny-db
+      PMA_PORT: 3306
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - "8080:80"
+    depends_on:
+      - kilny-db
+
+volumes:
+  db_data:
