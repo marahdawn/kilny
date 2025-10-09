@@ -3,9 +3,16 @@
 {% block title %}New Workshop{% endblock %}
 
 {% block body %}
+
+<div class="workshop-page">
+
     <h1>Create new Workshop</h1>
 
     {{ include('workshop/_form.html.twig') }}
 
-    <a href="{{ path('app_workshop_index') }}">back to list</a>
+    
+    <a href="{{ path('app_workshop_index') }}" class="button-link secondary">back to list</a>
+
+ </div>
+
 {% endblock %}
