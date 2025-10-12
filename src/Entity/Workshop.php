@@ -32,8 +32,12 @@ class Workshop
     #[ORM\Column(length: 255)]
     private ?string $location = null;
 
-    #[ORM\Column]
-    private ?int $slots = null;
+    #[ORM\ManyToOne(inversedBy: 'workshops')]
+    private ?Category $category = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $imageFilename = null;
+
 
     public function getId(): ?int
     {
@@ -112,15 +116,28 @@ class Workshop
         return $this;
     }
 
-    public function getSlots(): ?int
+    public function getCategory(): ?Category
     {
-        return $this->slots;
+        return $this->category;
     }
 
-    public function setSlots(int $slots): static
+    public function setCategory(?Category $category): static
     {
-        $this->slots = $slots;
+        $this->category = $category;
 
         return $this;
     }
+
+    public function getImageFilename(): ?string
+    {
+        return $this->imageFilename;
+    }
+
+    public function setImageFilename(string $imageFilename): static
+    {
+        $this->imageFilename = $imageFilename;
+
+        return $this;
+    }
+
 }

@@ -3,9 +3,16 @@
 namespace App\Form;
 
 use App\Entity\Workshop;
+use PHPUnit\TextUI\Configuration\File;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Validator\Constraints\File as FileConstraint;
+
+
 
 class WorkshopType extends AbstractType
 {
@@ -18,7 +25,27 @@ class WorkshopType extends AbstractType
             ->add('time')
             ->add('duration')
             ->add('location')
-            ->add('slots')
+            ->add('category', EntityType::class, [
+                'class' => 'App\Entity\Category',
+                'choice_label' => 'name',
+                'placeholder' => 'Choose a category',
+                'required' => false,
+            ])
+            ->add('imageFilename', Filetype::class, [
+                'label' => 'Upload File',
+                'mapped' => false,
+                'required' => false,
+                'constraints' => [
+                    new FileConstraint([
+                        'maxSize' => '2M',
+                        'mimeTypes' => [
+                            'image/jpeg',
+                            'image/png',
+                        ],
+                        'mimeTypesMessage' => 'Please upload a valid image (JPEG or PNG).',
+                    ])
+                ],
+            ])
         ;
     }
 
