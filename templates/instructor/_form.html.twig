@@ -1,4 +1,22 @@
 {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
+  <div class="form-table">
+
+    <div class="form-row">
+      <label for="{{ form.name.vars.id }}">Name</label>
+      {{ form_widget(form.name) }}
+    </div>
+
+    <div class="form-row">
+      <label for="{{ form.specialization.vars.id }}">Specialization</label>
+      {{ form_widget(form.specialization) }}
+    </div>
+
+    <div class="form-row">
+      <label for="{{ form.bio.vars.id }}">Bio</label>
+      {{ form_widget(form.bio) }}
+    </div>
+  
+  </div>
+
+  <button class="btn">{{ button_label|default('Save') }}</button>
 {{ form_end(form) }}

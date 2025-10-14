@@ -1,11 +1,19 @@
 {% extends 'base.html.twig' %}
 
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('instructor') }}
+{% endblock %}
+
 {% block title %}New Instructor{% endblock %}
 
 {% block body %}
     <h1>Create new Instructor</h1>
 
-    {{ include('instructor/_form.html.twig') }}
+  <div class="instructor-page show-page"> {# or new-page / edit-page #}
+  <div class="top-buttons">
+    <a href="{{ path('app_instructor_index') }}">Back to list</a>
+  </div>
 
-    <a href="{{ path('app_instructor_index') }}">back to list</a>
+    {{ include('instructor/_form.html.twig') }}
 {% endblock %}

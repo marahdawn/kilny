@@ -1,9 +1,19 @@
 {% extends 'base.html.twig' %}
 
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('instructor') }}
+{% endblock %}
+
 {% block title %}Instructor{% endblock %}
 
 {% block body %}
     <h1>Instructor</h1>
+
+<div class="instructor-page show-page"> {# or new-page / edit-page #}
+  <div class="top-buttons">
+    <a href="{{ path('app_instructor_index') }}">Back to list</a>
+  </div>
 
     <table class="table">
         <tbody>
@@ -26,9 +36,7 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_instructor_index') }}">back to list</a>
-
-    <a href="{{ path('app_instructor_edit', {'id': instructor.id}) }}">edit</a>
+    <a class="btn" href="{{ path('app_instructor_edit', {'id': instructor.id}) }}">Edit</a>
 
     {{ include('instructor/_delete_form.html.twig') }}
 {% endblock %}
