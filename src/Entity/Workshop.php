@@ -38,6 +38,9 @@ class Workshop
     #[ORM\Column(length: 255)]
     private ?string $imageFilename = null;
 
+    #[ORM\ManyToOne(inversedBy: 'workshops')]
+    private ?Instructor $instructor = null;
+
 
     public function getId(): ?int
     {
@@ -139,5 +142,18 @@ class Workshop
 
         return $this;
     }
+
+    public function getInstructor(): ?Instructor
+    {
+        return $this->instructor;
+    }
+
+    public function setInstructor(?Instructor $instructor): static
+    {
+        $this->instructor = $instructor;
+
+        return $this;
+    }
+
 
 }

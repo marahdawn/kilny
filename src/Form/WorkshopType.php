@@ -31,6 +31,12 @@ class WorkshopType extends AbstractType
                 'placeholder' => 'Choose a category',
                 'required' => false,
             ])
+            ->add('instructor', EntityType::class, [
+                'class' => 'App\Entity\Instructor',
+                'choice_label' => 'name',
+                'placeholder' => 'Choose an Instructor',
+                'required' => false,
+            ])
             ->add('imageFilename', Filetype::class, [
                 'label' => 'Upload File',
                 'mapped' => false,

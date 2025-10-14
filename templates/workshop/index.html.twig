@@ -1,66 +1,59 @@
 {% extends 'base.html.twig' %}
 
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('workshop') }}
+{% endblock %}
+
 {% block title %}Workshop index{% endblock %}
 
 {% block body %}
 
-    <div class="workshop-page">
+<div class="workshop-page">
 
     <h1>Workshop index</h1>
 
     <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Workshop Image</th>
-                <th>Title</th>
-                <th>Description</th>
-                <th>Date</th>
-                <th>Time</th>
-                <th>Duration</th>
-                <th>Location</th>
-                <th>Category</th>
-                <th>actions</th>
-            </tr>
-        </thead>
+
         <tbody>
         {% for workshop in workshops %}
             <tr>
-                <td>{{ workshop.id }}</td>
-					{% if workshop.imageFilename %}
-						<td>
-							<a href="{{ asset('uploads/workshops/' ~ workshop.imageFilename) }}" target="_blank">
-								<img src="{{ asset('uploads/workshops/' ~ workshop.imageFilename) }}" alt="{{ workshop.title }}" width="100">
-							</a>
-						</td>
-					{% else %}
-						No Image
-					{% endif %}
-                <td>{{ workshop.title }}</td>
-                <td>{{ workshop.description }}</td>
-                <td>{{ workshop.date ? workshop.date|date('Y-m-d') : '' }}</td>
-                <td>{{ workshop.time ? workshop.time|date('H:i:s') : '' }}</td>
-                <td>{{ workshop.duration }}</td>
-                <td>{{ workshop.location }}</td>
-                <td>{{ workshop.category ? workshop.category.name : 'No Category' }}</td>
-                <td>
+                <td data-label="Id:">{{ workshop.id }}</td>
 
-                    <a href="{{ path('app_workshop_show', {'id': workshop.id}) }}" class="button-link">Show</a>
-                    <a href="{{ path('app_workshop_edit', {'id': workshop.id}) }}" class="button-link">Edit</a>
+                {% if workshop.imageFilename %}
+                    <td data-label="Image:">
+                        <a href="{{ asset('uploads/workshops/' ~ workshop.imageFilename) }}" target="_blank">
+                            <img src="{{ asset('uploads/workshops/' ~ workshop.imageFilename) }}" alt="{{ workshop.title }}">
+                        </a>
+                    </td>
+                {% else %}
+                    <td data-label="Image:" class="no-image">No Image</td>
+                {% endif %}
 
-                    
+                <td data-label="Title:">{{ workshop.title }}</td>
+                <td data-label="Description:">{{ workshop.description }}</td>
+                <td data-label="Date:">{{ workshop.date ? workshop.date|date('Y-m-d') : '' }}</td>
+                <td data-label="Time:">{{ workshop.time ? workshop.time|date('H:i:s') : '' }}</td>
+                <td data-label="Duration:">{{ workshop.duration }}</td>
+                <td data-label="Location:">{{ workshop.location }}</td>
+                <td data-label="Category:">{{ workshop.category ? workshop.category.name : 'No Category' }}</td>
+                <td data-label="Instructor:">{{ workshop.instructor ? workshop.instructor.name : 'No Instructor' }}</td>
+
+                <td data-label="Actions:" class="actions-cell">
+                    <a href="{{ path('app_workshop_show', {'id': workshop.id}) }}" class="card-btn">Show</a>
+                    <a href="{{ path('app_workshop_edit', {'id': workshop.id}) }}" class="card-btn">Edit</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="9">no records found</td>
+                <td colspan="10">no records found</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('app_workshop_new') }}" class="button-link">Create new</a>
+    <a href="{{ path('app_workshop_new') }}" class="create-new">Create New</a>
 
-    </div>
+</div>
 
 {% endblock %}

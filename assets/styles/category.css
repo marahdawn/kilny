@@ -1,0 +1,158 @@
+/* ===== General Page Styling ===== */
+body {
+  background-color: #2e7d32; /* same green as workshop background */
+  font-family: "Poppins", sans-serif;
+  margin: 0;
+  padding: 0;
+  color: #333;
+  text-align: center;
+}
+
+.category-page {
+  max-width: 1000px;
+  margin: 60px auto;
+  background-color: #fff8e1; /* light cream table background */
+  padding: 20px 40px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+h1 {
+  text-align: center;
+  color: black;
+  margin-bottom: 30px;
+}
+
+/* ===== Table Styling ===== */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: transparent; /* cream table background */
+  margin-top: 20px;
+  box-shadow: none;
+  table-layout: fixed;
+}
+
+th, td {
+  border: 1px solid #ccc;
+  padding: 12px;
+  text-align: center;
+}
+
+th {
+  background-color: #e8f5e9;
+  color: #1b5e20;
+}
+
+tr:nth-child(even) {
+  background-color: #f9fbe7;
+}
+
+
+/* ===== Buttons ===== */
+.btn,
+.card-btn {
+  display: inline-block;
+  padding: 8px 16px;
+  margin: 4px;
+  background-color: #388e3c; /* green buttons */
+  color: white;
+  text-decoration: none;
+  border: none;
+  border-radius: 5px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.btn:hover,
+.card-btn:hover {
+  background-color: #2e7d32;
+}
+
+.delete-btn {
+  background-color: #e53935; /* red delete button */
+}
+
+.delete-btn:hover {
+  background-color: #c62828;
+}
+
+/* ===== Layout: Top buttons ===== */
+/* ===== Top Buttons (Shared Base Style) ===== */
+.top-buttons {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.top-buttons a {
+  color: white;
+  background-color: #388e3c;
+  padding: 8px 16px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.top-buttons a:hover {
+  background-color: #2e7d32;
+}
+
+/* ===== Page-specific positioning ===== */
+
+/* For index page (only "Create new" button) */
+.index-page .top-buttons {
+  justify-content: flex-end; /* move to top-right */
+}
+
+/* For show, new, edit pages (only "Back to list" button) */
+.show-page .top-buttons,
+.new-page .top-buttons,
+.edit-page .top-buttons {
+  justify-content: flex-start; /* move to top-left */
+}
+
+/* ===== Form Table Layout ===== */
+.form-table {
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto 20px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background-color: #fffde7;
+  padding: 0;
+}
+
+.form-row {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #ccc;
+}
+
+.form-row:last-child {
+  border-bottom: none;
+}
+
+.form-row label {
+  width: 150px;
+  font-weight: bold;
+  color: #1b5e20;
+  background-color: #e8f5e9;
+  padding: 10px 15px;
+  border-right: 1px solid #ccc;
+}
+
+.form-row input[type="text"] {
+  flex: 1;
+  padding: 10px 12px;
+  border: none;
+  background-color: transparent;
+  font-size: 1rem;
+}
+
+.form-row input[type="text"]:focus {
+  outline: none;
+  background-color: #f1f8e9;
+  border-radius: 0;
+}

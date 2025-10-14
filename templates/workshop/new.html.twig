@@ -1,18 +1,27 @@
 {% extends 'base.html.twig' %}
 
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('workshop') }}
+{% endblock %}
+
 {% block title %}New Workshop{% endblock %}
 
 {% block body %}
 
 <div class="workshop-page">
 
-    <h1>Create new Workshop</h1>
+    <a href="{{ path('app_workshop_index') }}" class="back-btn">Back to list</a>
 
-    {{ include('workshop/_form.html.twig') }}
+    <h1 style="visibility:hidden; height:0; margin:0;">Create new Workshop</h1>
 
-    
-    <a href="{{ path('app_workshop_index') }}" class="button-link secondary">back to list</a>
+    <div class="single-card-wrap">
+      <div class="card">
+        <h2 style="margin-top:0; color:#264b33; text-align:center;">Create new Workshop</h2>
+        {{ include('workshop/_form.html.twig') }}
+      </div>
+    </div>
 
- </div>
+</div>
 
 {% endblock %}

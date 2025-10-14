@@ -1,20 +1,26 @@
 {% extends 'base.html.twig' %}
 
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('workshop') }}
+{% endblock %}
+
 {% block title %}Edit Workshop{% endblock %}
 
 {% block body %}
 
 <div class="workshop-page">
 
-    <h1>Edit Workshop</h1>
+    <a href="{{ path('app_workshop_index') }}" class="back-btn">Back to list</a>
 
-    <div class="card">
+    <h1 style="visibility:hidden; height:0; margin:0;">Edit Workshop</h1>
+
+    <div class="single-card-wrap">
+      <div class="card">
+        <h2 style="margin-top:0; color:#264b33; text-align:center;">Edit Workshop</h2>
         {{ include('workshop/_form.html.twig', {'button_label': 'Update'}) }}
         {{ include('workshop/_delete_form.html.twig') }}
-    </div>
-
-    <a href="{{ path('app_workshop_index') }}" class="button-link secondary">back to list</a>
-
+      </div>
     </div>
 
 </div>

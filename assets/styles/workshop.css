@@ -1,0 +1,309 @@
+/* ==============================
+   Kilny Workshop CRUD Styling (UPDATED)
+============================== */
+
+/* ---------- Brand Tokens ---------- */
+:root {
+  --brand-green: #264b33;
+  --brand-cream: #f4f1e9;
+  --card-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  --card-radius: 20px;
+  --label-width: 130px; /* increased for nicer alignment */
+}
+
+/* ---------- Page Container ---------- */
+.workshop-page {
+  background: var(--brand-green);
+  color: var(--brand-cream);
+  padding: 72px 60px;
+  position: relative;
+  min-height: 100vh;
+  box-sizing: border-box;
+  font-family: 'Georgia', serif;
+}
+
+.workshop-page h1 {
+  margin: 0 0 18px;
+  text-align: center;
+  font-weight: 600;
+  font-size: 1rem;
+  color: var(--brand-cream);
+}
+
+/* ---------- Top Buttons ---------- */
+.workshop-page .create-new,
+.workshop-page .back-btn {
+  position: absolute;
+  top: 34px;
+  padding: 12px 22px;
+  border-radius: 999px;
+  background: var(--brand-cream);
+  color: var(--brand-green);
+  font-weight: 600;
+  text-decoration: none;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+  transition: all 0.3s ease;
+}
+
+.workshop-page .create-new:hover,
+.workshop-page .back-btn:hover {
+  transform: translateY(-2px);
+}
+
+.workshop-page .create-new { right: 60px; }
+.workshop-page .back-btn { left: 60px; }
+
+/* ---------- Grid Layout for Index ---------- */
+.workshop-page .table {
+  width: 100%;
+  margin-top: 40px;
+  box-sizing: border-box;
+}
+
+.workshop-page .table tbody {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 cards per row */
+  gap: 40px;
+  justify-items: center;
+  align-items: start;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0;
+}
+
+.workshop-page .table thead {
+  display: none;
+}
+
+.workshop-page .table tr {
+  margin: 0;
+  padding: 20px;
+  width: 100%;
+  max-width: 320px; /* card width */
+  background: var(--brand-cream);
+  color: var(--brand-green);
+  border-radius: var(--card-radius);
+  box-shadow: var(--card-shadow);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.workshop-page .table tr:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.18);
+}
+
+/* Image */
+.workshop-page .table img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 14px;
+}
+
+/* Content alignment: label:value on one line */
+.workshop-page .table td {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  width: 100%;
+  padding: 6px 0;
+  color: var(--brand-green);
+  font-size: 0.95rem;
+  word-break: break-word;
+}
+
+.workshop-page .table td[data-label="Image:"],
+.workshop-page .table .actions-cell,
+.workshop-page .table .card-details-cell {
+  display: block !important;
+}
+
+.workshop-page .table td:before {
+  content: attr(data-label);
+  flex: 0 0 var(--label-width);
+  font-weight: 700;
+  color: var(--brand-green);
+  display: block;
+}
+
+.workshop-page .table td > *:not(:first-child) {
+  flex: 1 1 auto;
+}
+
+.workshop-page .table td[data-label="Description:"] {
+  white-space: normal;
+  line-height: 1.35;
+}
+
+.workshop-page .table td.no-image {
+  min-height: 180px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #9aa79a;
+  font-style: italic;
+}
+
+/* ---------- Actions ---------- */
+.workshop-page .table .actions-cell:before {
+  content: "";
+  display: none;
+}
+
+.workshop-page .table .actions-cell {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+  margin-top: 14px;
+  padding-top: 4px;
+  text-align: center;
+}
+
+/* Card buttons styling */
+.card-btn {
+  border: 2px solid var(--brand-green);
+  border-radius: 20px;
+  padding: 6px 18px;
+  color: var(--brand-green);
+  text-decoration: none;
+  font-weight: 600;
+  background: transparent;
+  font-size: 0.95rem;
+  transition: all 0.18s ease;
+}
+
+.card-btn:hover {
+  background: var(--brand-green);
+  color: var(--brand-cream);
+  transform: translateY(-2px);
+}
+
+/* Danger variant */
+.card-btn.danger {
+  color: #b23b37;
+  border-color: #b23b37;
+}
+
+.card-btn.danger:hover {
+  background: #b23b37;
+  color: #fff;
+}
+
+/* ---------- Show Page Card ---------- */
+.single-card-wrap {
+  max-width: 680px;
+  margin: 24px auto 0;
+}
+
+.single-card-wrap .card {
+  background: var(--brand-cream);
+  color: var(--brand-green);
+  padding: 24px;
+  border-radius: var(--card-radius);
+  box-shadow: var(--card-shadow);
+}
+
+.single-card-wrap img {
+  width: 100%;
+  height: 240px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 18px;
+}
+
+.single-card-wrap .details p {
+  margin: 6px 0;
+  font-size: 1rem;
+}
+
+.show-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  align-items: center;
+  margin-top: 18px;
+}
+
+/* ---------- Form Styling for New/Edit ---------- */
+.single-card-wrap .card h2 {
+  text-align: center;
+  color: var(--brand-green);
+  margin-bottom: 18px;
+}
+
+.workshop-page .card form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.workshop-page .card form label {
+  font-weight: 600;
+  color: var(--brand-green);
+}
+
+.workshop-page .card form input,
+.workshop-page .card form select,
+.workshop-page .card form textarea {
+  width: 100%;
+  padding: 8px 10px;
+  border-radius: 8px;
+  border: 1px solid rgba(38, 75, 51, 0.2);
+  font-family: inherit;
+  font-size: 1rem;
+}
+
+.workshop-page .card form button,
+.workshop-page .card .btn {
+  background: var(--brand-green);
+  color: var(--brand-cream);
+  padding: 8px 14px;
+  border: none;
+  border-radius: 20px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  transition: all 0.18s ease;
+  font-size: 0.95rem;
+}
+
+.workshop-page .card form button:hover {
+  transform: translateY(-2px);
+  background: #1f3d29;
+}
+
+/* ---------- Force Delete Buttons to Be Red ---------- */ 
+.card-btn.danger, 
+.workshop-page .card .btn.delete, 
+.workshop-page .card button.delete, 
+.workshop-page form button.delete, 
+.workshop-page form .btn.delete { 
+background: #b23b37 !important; 
+color: #fff !important; 
+border: 2px solid #b23b37 !important; }
+
+/* ---------- Responsive Adjustments ---------- */
+@media (max-width: 1100px) {
+  .workshop-page .table tbody {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  :root { --label-width: 110px; }
+}
+
+@media (max-width: 750px) {
+  .workshop-page .table tbody {
+    grid-template-columns: 1fr;
+  }
+  .workshop-page .create-new { right: 20px; top: 20px; }
+  .workshop-page .back-btn { left: 20px; top: 20px; }
+  .workshop-page .table tr { max-width: 100%; }
+  .workshop-page .table td { flex-direction: column; gap: 6px; }
+  .workshop-page .table td:before { flex: none; width: auto}
+}
