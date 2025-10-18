@@ -18,5 +18,10 @@
         "dev": "encore dev",
         "watch": "encore dev --watch",
         "build": "encore production --progress"
+    },
+    "dependencies": {
+        "datatables.net": "^2.3.4",
+        "datatables.net-dt": "^2.3.4",
+        "jquery": "^3.7.1"
     }
 }

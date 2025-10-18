@@ -3,43 +3,145 @@
 {% block stylesheets %}
     {{ parent() }}
     {{ encore_entry_link_tags('category') }}
+
+    {# ✅ Include DataTables CSS #}
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css">
+    <style>
+        /* ✅ Custom cream and green theme integration */
+        body {
+            background-color: #264b33;
+        }
+
+        h1 {
+            color: #f4f1e9;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .top-buttons {
+            text-align: right;
+            margin-bottom: 10px;
+        }
+
+        .top-buttons a {
+            background-color: #4caf50;
+            color: #fff;
+            padding: 6px 12px;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+
+        .top-buttons a:hover {
+            background-color: #388e3c;
+        }
+
+        table.dataTable thead th {
+            background-color: #c8e6c9;
+            color: #1b5e20;
+            text-align: left;
+        }
+
+        table.dataTable {
+            border: 1px solid #a5d6a7;
+            border-radius: 6px;
+            overflow: hidden;
+        }
+
+        .btn {
+            background-color: #81c784;
+            color: white;
+            padding: 5px 10px;
+            text-decoration: none;
+            border-radius: 4px;
+            margin-right: 3px;
+        }
+
+        .btn:hover {
+            background-color: #66bb6a;
+        }
+
+        /* Align pagination and search bar nicely */
+        div.dataTables_filter {
+            float: right;
+            text-align: right;
+        }
+
+        div.dataTables_paginate {
+            float: right;
+        }
+
+        div.dataTables_info {
+            float: left;
+            padding-top: 10px;
+        }
+    </style>
 {% endblock %}
 
 {% block title %}Category index{% endblock %}
 
 {% block body %}
-
     <h1>Category index</h1>
 
-<div class="category-page index-page">
-  <div class="top-buttons">
-    <a href="{{ path('app_category_new') }}">Create new</a>
-  </div>
-  
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for category in categories %}
-            <tr>
-                <td>{{ category.id }}</td>
-                <td>{{ category.name }}</td>
-                <td>
-                    <a class="btn" href="{{ path('app_category_show', {'id': category.id}) }}">Show</a>
-                    <a class="btn" href="{{ path('app_category_edit', {'id': category.id}) }}">Edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="3">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+    <div class="category-page index-page">
+        <div class="top-buttons">
+            <a class="btn" href="{{ path('app_category_new') }}">Create new</a>
+        </div>
 
+        <table id="categoryTable" class="display table">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for category in categories %}
+                    <tr>
+                        <td>{{ category.id }}</td>
+                        <td>{{ category.name }}</td>
+                        <td>
+                            <a class="btn" href="{{ path('app_category_show', {'id': category.id}) }}">Show</a>
+                            <a class="btn" href="{{ path('app_category_edit', {'id': category.id}) }}">Edit</a>
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="3">No records found</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('category') }}
+
+    {# jQuery + DataTables JS (matching instructor page) #}
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            $('#categoryTable').DataTable({
+                "paging": true,
+                "searching": true,
+                "info": true,
+                "ordering": true,
+                "pageLength": 5,
+                "lengthChange": false,
+                "language": {
+                    "search": "Search:",
+                    "paginate": {
+                        "previous": "Prev",
+                        "next": "Next"
+                    },
+                    "info": "Showing _START_ to _END_ of _TOTAL_ categories",
+                    "zeroRecords": "No matching categories found"
+                }
+            });
+        });
+    </script>
 {% endblock %}

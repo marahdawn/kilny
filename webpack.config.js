@@ -27,6 +27,7 @@ Encore
     .addStyleEntry('category', './assets/styles/category.css')
     .addStyleEntry('instructor', './assets/styles/instructor.css')
 
+    
     // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.
     .splitEntryChunks()
 

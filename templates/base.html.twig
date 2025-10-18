@@ -1,22 +1,257 @@
+{# templates/base.html.twig — cleaned & prettier sidebar (responsive + logo) #}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>{% block title %}Welcome!{% endblock %}</title>
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">
 
-    {# CSS Stylesheets #}
     {% block stylesheets %}
-        {{ encore_entry_link_tags('app') }}
-    {% endblock %}
+    {{ encore_entry_link_tags('app') }}
+    <style>
+        :root {
+            --cream: #fdfbf5;
+            --green-dark: #264b33;
+            --green-mid: #4caf50;
+            --green-light: #c8e6c9;
+            --btn: #81c784;
+            --muted-border: #e8f5e9;
+            --sidebar-width: 220px;
+            --radius: 10px;
+            --shadow-sm: 0 6px 20px rgba(38,75,51,0.06);
+        }
+
+        * { box-sizing: border-box; }
+        html, body { height: 100%; }
+
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--cream);
+            color: #222;
+            display: flex;
+            min-height: 100vh;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ---------- SIDEBAR ---------- */
+        .sidebar {
+            width: var(--sidebar-width);
+            background: linear-gradient(180deg, #ffffff 0%, #fbfdfa 100%);
+            border-right: 1px solid var(--muted-border);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            padding: 0;
+            position: fixed;
+            inset: 0 auto 0 0;
+            box-shadow: var(--shadow-sm);
+            z-index: 30;
+        }
+
+        /* ---------- LOGO / BRAND ---------- */
+        .brand {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            color: var(--green-dark);
+            font-weight: 800;
+            padding: 20px 0;
+            margin: 0;
+            background: none;
+        }
+
+        .brand .logo {
+            display: block;
+            width: auto;
+            height: auto;
+            margin: 0 auto;
+            padding: 0;
+            background: none;
+            border: none;
+            box-shadow: none;
+        }
+
+        .brand .logo svg {
+            width: 92px;
+            height: auto;
+            display: block;
+        }
+
+        .brand:hover { transform: translateY(-2px); transition: transform 0.12s ease; }
+
+        /* ---------- NAV LINKS ---------- */
+        .nav-links {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 0 20px;
+        }
+
+        .nav-link {
+            width: calc(100% - 32px);
+            max-width: 184px;
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 10px 12px;
+            border-radius: 10px;
+            text-decoration: none;
+            color: #21532a;
+            font-weight: 700;
+            transition: background 0.14s ease, transform 0.12s ease, box-shadow 0.12s ease;
+        }
+
+        .nav-link:hover {
+            background: var(--green-light);
+            transform: translateY(-2px);
+        }
+
+        .nav-link.active {
+            background: linear-gradient(180deg, var(--green-mid), var(--btn));
+            color: #fff;
+            box-shadow: 0 8px 24px rgba(46,125,50,0.12);
+        }
+
+        /* ---------- FOOTER INSIDE SIDEBAR ---------- */
+        .sidebar-footer {
+            margin-top: auto;
+            font-size: 0.85rem;
+            color: #557a59;
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+
+        /* ---------- MAIN CONTENT ---------- */
+        .main-content {
+            margin-left: var(--sidebar-width);
+            flex-grow: 1;
+            padding: 20px 24px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Buttons and top links */
+        .btn, .top-buttons a {
+            display: inline-block;
+            background: linear-gradient(180deg, var(--green-mid), var(--btn));
+            color: #fff;
+            padding: 8px 14px;
+            border-radius: 8px;
+            font-weight: 700;
+            text-decoration: none;
+            border: none;
+            transition: opacity 0.12s ease, transform 0.12s ease;
+        }
+
+        .btn:hover, .top-buttons a:hover {
+            opacity: 0.95;
+            transform: translateY(-1px);
+        }
+
+        /* ---------- RESPONSIVE MODE ---------- */
+        @media (max-width: 860px) {
+            .sidebar {
+                position: relative;
+                width: 100%;
+                height: auto;
+                flex-direction: row;
+                align-items: center;
+                justify-content: space-between;
+                gap: 12px;
+                padding: 12px 14px;
+                border-right: none;
+                border-bottom: 1px solid var(--muted-border);
+            }
+
+            .brand { padding: 0; }
+            .brand .logo svg { width: 70px; }
+            .nav-links {
+                flex-direction: row;
+                justify-content: flex-end;
+                gap: 6px;
+                padding: 0;
+                width: auto;
+            }
+
+            .nav-link {
+                width: auto;
+                padding: 8px 10px;
+                border-radius: 8px;
+                font-size: 0.95rem;
+            }
+
+            .main-content {
+                margin-left: 0;
+                padding: 18px;
+            }
+        }
+
+        /* ---------- ACCESSIBILITY ---------- */
+        .sr-only {
+            position: absolute;
+            left: -10000px;
+            top: auto;
+            width: 1px;
+            height: 1px;
+            overflow: hidden;
+        }
+    </style>
+{% endblock %}
+
 </head>
 <body>
-    {# Main page content #}
-    {% block body %}{% endblock %}
 
-    {# JavaScript files #}
+    {# SIDEBAR NAVIGATION #}
+    <nav class="sidebar" role="navigation" aria-label="Main navigation">
+        {# Logo linking to workshop index (homepage in your app) #}
+        <a href="{{ path('app_home') }}" class="brand" aria-label="Kilny homepage">
+            <span class="logo">
+                   {{ include('images/kilnylogo.svg') }}
+            </span>
+        </a>
+
+        {% set route = app.request.attributes.get('_route') %}
+        <div class="nav-links" role="menubar" aria-label="Primary">
+            <a class="nav-link {% if route == 'app_workshop_index' %}active{% endif %}"
+               href="{{ path('app_workshop_index') }}" role="menuitem" title="Workshops">
+                <span class="icon" aria-hidden="true">W</span>
+                <span class="label">Workshop</span>
+            </a>
+
+            <a class="nav-link {% if route == 'app_category_index' %}active{% endif %}"
+               href="{{ path('app_category_index') }}" role="menuitem" title="Categories">
+                <span class="icon" aria-hidden="true">C</span>
+                <span class="label">Category</span>
+            </a>
+
+            <a class="nav-link {% if route == 'app_instructor_index' %}active{% endif %}"
+               href="{{ path('app_instructor_index') }}" role="menuitem" title="Instructors">
+                <span class="icon" aria-hidden="true">I</span>
+                <span class="label">Instructor</span>
+            </a>
+        </div>
+
+        <div class="sidebar-footer" aria-hidden="true">
+            <small>© {{ "now"|date("Y") }} Kilny</small>
+        </div>
+    </nav>
+
+    {# MAIN CONTENT AREA #}
+    <main class="main-content" role="main">
+        {% block body %}{% endblock %}
+    </main>
+
     {% block javascripts %}
-            {{ encore_entry_script_tags('app') }}
+        {{ encore_entry_script_tags('app') }}
     {% endblock %}
 </body>
 </html>

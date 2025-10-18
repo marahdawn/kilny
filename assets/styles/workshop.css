@@ -3,6 +3,11 @@
 ============================== */
 
 /* ---------- Brand Tokens ---------- */
+
+body {
+            background-color: #264b33;
+        }
+
 :root {
   --brand-green: #264b33;
   --brand-cream: #f4f1e9;
