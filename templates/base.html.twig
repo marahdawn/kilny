@@ -238,6 +238,25 @@
                 <span class="icon" aria-hidden="true">I</span>
                 <span class="label">Instructor</span>
             </a>
+
+            <a class="nav-link {% if route == 'app_reservation_index' %}active{% endif %}"
+               href="{{ path('app_reservation_index') }}" role="menuitem" title="Reservations">
+                <span class="icon" aria-hidden="true">I</span>
+                <span class="label">Reservations</span>
+            </a>
+
+            {% if app.user %}
+                <a href="#" class="nav-link" role="menuitem" title="Logout"
+                onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                    <span class="icon" aria-hidden="true">⎋</span>
+                    <span class="label">Logout</span>
+                </a>
+
+                <form id="logout-form" action="{{ path('app_logout') }}" method="post" class="sr-only">
+                    <input type="hidden" name="_token" value="{{ csrf_token('logout') }}">
+                </form>
+            {% endif %}
+
         </div>
 
         <div class="sidebar-footer" aria-hidden="true">

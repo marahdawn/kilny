@@ -1,0 +1,132 @@
+{% block title %}{% endblock %}
+
+{% block body %}
+
+<style>
+    body {
+        margin: 0;
+        font-family: 'Georgia', serif;
+        background-color: #f5f3ee; /* soft beige */
+        color: #333;
+    }
+
+    form {
+        max-width: 400px;
+        margin: 70px auto;
+        background: #fff;
+        padding: 30px;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
+
+    h1 {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    label {
+        display: block;
+        margin: 10px 0 5px;
+        font-weight: bold;
+    }
+
+    .form-control {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        background: #fafafa;
+        font-size: 1rem;
+    }
+
+    .checkbox {
+        margin-top: 10px;
+    }
+
+    /* Buttons (from your main CSS) */
+    .btn {
+        text-decoration: none;
+        padding: 10px 20px;
+        border-radius: 4px;
+        font-weight: bold;
+        transition: background 0.3s, color 0.3s;
+        display: inline-block;
+        text-align: center;
+        cursor: pointer;
+    }
+
+    .btn-primary {
+        background-color: #264b33;
+        color: #fff;
+        width: 100%;
+        border: none;
+    }
+
+
+    .text-center {
+        text-align: center;
+    }
+
+    .text-muted {
+        color: #555;
+    }
+
+    .alert {
+        background: #e74c3c;
+        color: white;
+        padding: 10px;
+        border-radius: 4px;
+        text-align: center;
+        margin-bottom: 10px;
+    }
+
+    .login-link .btn-secondary {
+    width: 100%;              
+    padding: 10px 0;          
+    box-sizing: border-box;    
+    display: block;          
+    }
+
+    .mt-3 {
+        margin-top: 15px;
+    }
+</style>
+
+<form method="post">
+    {% if error %}
+        <div class="alert">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+    {% endif %}
+
+    {% if app.user %}
+        <div class="mb-3">
+            You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
+        </div>
+    {% endif %}
+
+    <h1>Please log in</h1>
+
+    <label for="inputUsername">Username</label>
+    <input type="text" value="{{ last_username }}" name="username" id="inputUsername"
+           class="form-control" autocomplete="username" required autofocus>
+
+    <label for="inputPassword">Password</label>
+    <input type="password" name="password" id="inputPassword"
+           class="form-control" autocomplete="current-password" required>
+
+    <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+
+    <div class="checkbox mb-3">
+        <label><input type="checkbox" name="_remember_me"> Remember me</label>
+    </div>
+
+    <button class="btn btn-primary" type="submit">
+        Log in
+    </button>
+
+    <div class="login-link">
+        <a href="{{ path('app_register') }}" class="btn btn-secondary">Don't have an account? Sign up</a>
+    </div>
+
+</form>
+
+{% endblock %}

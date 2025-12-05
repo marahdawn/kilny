@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('reservation') }}
+{% endblock %}
+
+{% block title %}Edit Reservation{% endblock %}
+
+{% block body %}
+    <div class="reservation-page edit-page">
+    <h1>Edit Reservation</h1>
+
+    <div class="top-buttons">
+      <a href="{{ path('app_reservation_index') }}">Back to list</a>
+    </div>
+
+    {{ include('reservation/_form.html.twig', {'button_label': 'Update'}) }}
+    {{ include('reservation/_delete_form.html.twig') }}
+</div>
+{% endblock %}

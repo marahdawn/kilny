@@ -1,0 +1,121 @@
+{% block title %}{% endblock %}
+
+{% block body %}
+
+<style>
+    body {
+        margin: 0;
+        font-family: 'Georgia', serif;
+        background-color: #f5f3ee;
+        color: #333;
+    }
+
+    .register-form {
+        max-width: 400px;
+        margin: 70px auto;
+        background: #fff;
+        padding: 30px;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
+
+    .register-form h1 {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    /* Input styling */
+    .register-form label {
+        font-weight: bold;
+    }
+
+    .register-form input[type="text"],
+    .register-form input[type="password"] {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        background: #fafafa;
+        margin-bottom: 10px;
+    }
+
+    /* Inline checkbox */
+    .form-check {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin: 10px 0;
+    }
+
+    /* Button styling */
+    .btn {
+        text-decoration: none;
+        padding: 10px 20px;
+        border-radius: 4px;
+        font-weight: bold;
+        transition: background 0.3s, color 0.3s;
+        display: inline-block;
+        text-align: center;
+        cursor: pointer;
+        width: 100%;
+        border: none;
+    }
+
+    .btn-primary {
+        background-color: #264b33;
+        color: #fff;
+    }
+    
+
+    /* Error styling */
+    .alert {
+        background: #e74c3c;
+        color: #fff;
+        padding: 10px;
+        border-radius: 5px;
+        margin-bottom: 10px;
+        text-align: center;
+    }
+
+    .login-link .btn-secondary {
+    width: 100%;              
+    padding: 10px 0;          
+    box-sizing: border-box;    
+    display: block;          
+}
+    
+</style>
+
+<div class="register-form">
+    <h1>Create Account</h1>
+
+    {{ form_start(registrationForm) }}
+
+        <label for="{{ registrationForm.username.vars.id }}">Username</label>
+        {{ form_errors(registrationForm.username) }}
+        {{ form_widget(registrationForm.username) }}
+
+        <label for="{{ registrationForm.plainPassword.vars.id }}">Password</label>
+        {{ form_errors(registrationForm.plainPassword) }}
+        {{ form_widget(registrationForm.plainPassword) }}
+
+        <div class="form-check">
+            {{ form_widget(registrationForm.agreeTerms) }}
+            <label class="form-check-label" for="{{ registrationForm.agreeTerms.vars.id }}">Agree terms</label>
+                {{ registrationForm.agreeTerms.vars.label }}
+            </label>
+        </div>
+
+        {{ form_errors(registrationForm.agreeTerms) }}
+
+        <button type="submit" class="btn btn-primary">Register</button>
+
+    {{ form_end(registrationForm) }}
+
+    <div class="login-link">
+        <a href="{{ path('app_login') }}" class="btn btn-secondary">Already have an account? Log in</a>
+    </div>
+
+</div>
+
+{% endblock %}

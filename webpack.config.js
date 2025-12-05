@@ -26,6 +26,7 @@ Encore
     .addStyleEntry('workshop', './assets/styles/workshop.css')
     .addStyleEntry('category', './assets/styles/category.css')
     .addStyleEntry('instructor', './assets/styles/instructor.css')
+    .addStyleEntry('reservation', './assets/styles/reservation.css')
 
     
     // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.
